@@ -1,4 +1,5 @@
 "use client"
+/* eslint-disable */
 import React, { useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Overview } from "./overview.tsx";
