@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Overview } from "./overview.tsx";
-import { FutureProjections } from "./future-projections.tsx";
-import { RateAnalysis } from "./rate-analysis.tsx";
+import { Overview } from "./overview";
+import { FutureProjections } from "./future-projections";
+import { RateAnalysis } from "./rate-analysis";
 import { data } from "./utils";
 
 interface DataType {
@@ -25,7 +25,7 @@ const PldDataAnalyzer = ({data}:{ data: DataType }) => {
       </div>
 
       <Tabs
-        value={activeTab}
+        value={Number(activeTab)}
         onValueChange={setActiveTab}
         className="mb-8"
       >

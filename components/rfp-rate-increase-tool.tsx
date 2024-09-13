@@ -34,119 +34,17 @@ export function RfpRateIncreaseTool() {
     setError(null)
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 5000))
-    //   const response = await fetch(`https://price-predictor-32xw.onrender.com/calculate`, {
-    //     method: 'POST',
-    //     body: formData,
-    //   })
+      const response = await fetch(`https://price-predictor-32xw.onrender.com/calculate`, {
+        method: 'POST',
+        body: formData,
+      })
 
-    //   if (!response.ok) {
-    //     throw new Error('Failed to fetch data from the API')
-    //   }
+      if (!response.ok) {
+        throw new Error('Failed to fetch data from the API')
+      }
 
-    //   const result = await response.json()
-      setApiResult({
-        "totals": {
-            "Base Rate": 2284623.3,
-            "Total Charge": 1431504.84,
-            "DAS": 20771,
-            "EDAS": 14806,
-            "Delivery and Returns": 0,
-            "Fuel Surcharge": 198766.34
-        },
-        "futureTotals": {
-            "Base Rate": {
-                "2025": 2421700.7,
-                "2026": 2571846.14,
-                "2027": 2736444.29,
-                "2028": 2914313.17
-            },
-            "Total Charge": {
-                "2025": 1518826.64,
-                "2026": 1614512.72,
-                "2027": 1717841.53,
-                "2028": 1831219.07
-            },
-            "Fuel Surcharge": {
-                "2025": 211089.85,
-                "2026": 224599.6,
-                "2027": 239198.57,
-                "2028": 255224.87
-            },
-            "DAS": {
-                "2025": 22058.8,
-                "2026": 23448.5,
-                "2027": 24972.65,
-                "2028": 26620.84
-            },
-            "EDAS": {
-                "2025": 15709.17,
-                "2026": 16698.85,
-                "2027": 17767.58,
-                "2028": 18922.47
-            },
-            "Delivery and Returns": {
-                "2025": 0,
-                "2026": 0,
-                "2027": 0,
-                "2028": 0
-            }
-        },
-        "carrierRateOfIncrease": {
-            "2025": {
-                "Base Rate": 6,
-                "Total Charge": 6.1,
-                "DAS": 6.2,
-                "EDAS": 6.1,
-                "Delivery and Returns": 6,
-                "Fuel Surcharge": 6.2,
-                "GRI": 5.9,
-                "Signature Required": 6,
-                "Return": 6.1,
-                "residential_surcharge": 6.3,
-                "additional_handling": 6.2
-            },
-            "2026": {
-                "Base Rate": 6.2,
-                "Total Charge": 6.3,
-                "DAS": 6.3,
-                "EDAS": 6.3,
-                "Delivery and Returns": 6.2,
-                "Fuel Surcharge": 6.4,
-                "GRI": 6.1,
-                "Signature Required": 6.2,
-                "Return": 6.3,
-                "residential_surcharge": 6.5,
-                "additional_handling": 6.4
-            },
-            "2027": {
-                "Base Rate": 6.4,
-                "Total Charge": 6.4,
-                "DAS": 6.5,
-                "EDAS": 6.4,
-                "Delivery and Returns": 6.3,
-                "Fuel Surcharge": 6.5,
-                "GRI": 6.2,
-                "Signature Required": 6.3,
-                "Return": 6.4,
-                "residential_surcharge": 6.6,
-                "additional_handling": 6.5
-            },
-            "2028": {
-                "Base Rate": 6.5,
-                "Total Charge": 6.6,
-                "DAS": 6.6,
-                "EDAS": 6.5,
-                "Delivery and Returns": 6.4,
-                "Fuel Surcharge": 6.7,
-                "GRI": 6.3,
-                "Signature Required": 6.4,
-                "Return": 6.5,
-                "residential_surcharge": 6.8,
-                "additional_handling": 6.7
-            }
-        }
-    }) 
+      const result = await response.json()
+      setApiResult(result) 
     } catch (error: any) {
       setError(error.message)
     } finally {
@@ -234,7 +132,7 @@ export function RfpRateIncreaseTool() {
         {renderDesign()}
       </div>
     )}
-    </div>
+ </div>
 
   )
 }

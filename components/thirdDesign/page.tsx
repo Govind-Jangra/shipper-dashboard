@@ -190,7 +190,6 @@ export default function Dashboard({ data }: { data: DataType }) {
 
                   <RadialBar
                     background
-                    clockwise
                     dataKey="value"
                     cornerRadius={30}
                     fill="#60A5FA"
@@ -344,9 +343,7 @@ export default function Dashboard({ data }: { data: DataType }) {
                       />
 
                       <RadialBar
-                        minAngle={15}
                         background={{ fill: "#4B5563" }}
-                        clockWise
                         dataKey="value"
                         cornerRadius={5}
                       />

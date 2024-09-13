@@ -26,7 +26,7 @@ export const Overview = ({ data }) => {
     .filter(([key]) => key !== "Discount" && key !== "Total Charge" && key !== "Base Rate")
     .map(([key, value]) => ({
       name: key.replace(/_/g, " ").toUpperCase(),
-      value: Math.abs(value),
+      value: Math.abs(value as number),
     }));
 
   // Add "Base Rate" manually
@@ -38,7 +38,7 @@ export const Overview = ({ data }) => {
   // Prepare data for discount visualization
   const costBeforeDiscount = Object.entries(data.totals)
     .filter(([key]) => key !== "Discount" && key !== "Total Charge")
-    .reduce((sum, [_, value]) => sum + value, 0);
+    .reduce((sum, [_, value]) => sum + (value as number), 0);
 
   const discountData = [
     { name: "Cost Before Discount", value: costBeforeDiscount },

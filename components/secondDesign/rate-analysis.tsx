@@ -89,18 +89,16 @@ export const RateAnalysis = ({ data }) => {
         </CardTitle>
         <Badge
           variant="secondary"
-          className="text-white"
-          style={{
-            backgroundColor: COLORS[index % COLORS.length],
-          }}
+          className={`text-white bg-[${COLORS[index % COLORS.length]}]`}
+          
         >
           Rate Increase
         </Badge>
       </CardHeader>
       <CardContent>
-        <div className="text-2xl font-bold flex items-center">
+        <div className="text-2xl font-bold flex items-center" >
           <Percent className="mr-1 h-6 w-6" />
-          {value.toFixed(1)}%
+          {((value as number)).toFixed(1)}%
         </div>
         <p className="text-xs text-muted-foreground">
           Projected increase for 2028
