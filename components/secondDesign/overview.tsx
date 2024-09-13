@@ -14,7 +14,7 @@ import {
   YAxis,
   CartesianGrid,
 } from "recharts";
-import { formatCurrency, COLORS } from "./utils.tsx";
+import { formatCurrency, COLORS } from "./utils";
 
 export const Overview = ({ data }) => {
   // Calculate discount using your provided formula

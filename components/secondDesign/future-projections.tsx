@@ -71,9 +71,11 @@ export const FutureProjections = ({ data }) => {
                 </Badge>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{formatCurrency(values["2028"])}</div>
+              <div className="text-2xl font-bold">
+  {formatCurrency((values as Record<string, number>)["2028"])}
+</div>
                 <p className="text-xs text-muted-foreground">
-                  {values["2028"] > data.totals[key] ? (
+                  {(values as Record<string, number>)["2028"] > data.totals[key] ? (
                     <span className="text-red-400 flex items-center">
                       <TrendingUp className="mr-1 h-4 w-4" />
                       Increase from current

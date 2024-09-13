@@ -5,7 +5,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Overview } from "./overview.tsx";
 import { FutureProjections } from "./future-projections.tsx";
 import { RateAnalysis } from "./rate-analysis.tsx";
-import { data } from "./utils.tsx";
+import { data } from "./utils";
 
 interface DataType {
   totals: Record<string, number>;

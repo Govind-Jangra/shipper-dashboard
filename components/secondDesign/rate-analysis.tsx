@@ -13,7 +13,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { Percent } from "lucide-react";
-import { COLORS } from "./utils.tsx";
+import { COLORS } from "./utils";
 
 export const RateAnalysis = ({ data }) => {
   // Create rateIncreaseData without discount calculation

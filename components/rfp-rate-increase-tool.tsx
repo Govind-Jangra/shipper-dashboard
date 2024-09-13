@@ -68,60 +68,71 @@ export function RfpRateIncreaseTool() {
   }
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-4">
+    <h1 className="text-3xl font-bold mb-8">RFP Rate Increase Tool</h1>
+    
     {!apiResult ? (
+      // Show the form only when data is not available
       <>
-      <div className="bg-gray-800 p-6 rounded-lg w-full max-w-md">
-      <h2 className="text-xl font-semibold mb-4">Upload PLD File</h2>
-      <div className="border-2 border-dashed border-gray-600 rounded-lg p-4 flex justify-center">
-        <label className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-          <span className="mr-2">📁</span> Select PLD File
-          <input 
-            type="file" 
-            onChange={handleFileChange} 
-            className="hidden"
-          />
-        </label>
-        {selectedFile && <p className="mt-2">{selectedFile.name || ""}</p>}
-      </div>
-    </div>
+        <div className="bg-gray-800 p-6 rounded-lg w-full max-w-md">
+          <h2 className="text-xl font-semibold mb-4">Upload PLD File</h2>
+          <div className="border-2 border-dashed border-gray-600 rounded-lg p-4 flex justify-center">
+            <label className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+              <span className="mr-2">📁</span> Select PLD File
+              <input 
+                type="file" 
+                onChange={handleFileChange} 
+                className="hidden"
+              />
+            </label>
+            {selectedFile && <p className="mt-2">{selectedFile.name || ""}</p>}
+          </div>
+        </div>
 
-    <div className="mt-6 w-full max-w-md">
-      <select 
-        value={selectedCarrier} 
-        onChange={(e) => setSelectedCarrier(e.target.value)}
-        className="w-full mb-4 bg-gray-700 border-gray-600 text-white p-2 rounded"
-      >
-        <option value="">Select Carrier</option>
-        <option value="UPS">UPS</option>
-        <option value="FedEx">FedEx</option>
-      </select>
-
-      <div className="flex justify-between mb-4 gap-2">
-        {['design1', 'design2', 'design3'].map((design) => (
-          <button 
-            key={design}
-            onClick={() => setSelectedDesign(design)}
-            className={`flex-1 px-4 py-2 rounded ${
-              selectedDesign === design 
-                ? 'bg-blue-600 hover:bg-blue-700 text-white' 
-                : 'bg-gray-700 hover:bg-gray-600 text-gray-300 border border-gray-600'
-            }`}
+        <div className="mt-6 w-full max-w-md">
+          <select 
+            value={selectedCarrier} 
+            onChange={(e) => setSelectedCarrier(e.target.value)}
+            className="w-full mb-4 bg-gray-700 border-gray-600 text-white p-2 rounded"
           >
-            Design {design.slice(-1)}
-          </button>
-        ))}
-      </div>
+            <option value="">Select Carrier</option>
+            <option value="UPS">UPS</option>
+            <option value="FedEx">FedEx</option>
+          </select>
 
-      <button 
-        onClick={handleSubmit}
-        className="w-full bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
-      >
-        {isLoading ? 'Processing...' : 'Process'}
-      </button>
-    </div>
-    </>
-    ): renderDesign()}
-    </div>
+          <div className="flex justify-between mb-4 gap-2">
+            {['design1', 'design2', 'design3'].map((design) => (
+              <button 
+                key={design}
+                onClick={() => setSelectedDesign(design)}
+                className={`flex-1 px-4 py-2 rounded ${
+                  selectedDesign === design 
+                    ? 'bg-blue-600 hover:bg-blue-700 text-white' 
+                    : 'bg-gray-700 hover:bg-gray-600 text-gray-300 border border-gray-600'
+                }`}
+              >
+                Design {design.slice(-1)}
+              </button>
+            ))}
+          </div>
+
+          <button 
+            onClick={handleSubmit}
+            className="w-full bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+          >
+            {isLoading ? 'Processing...' : 'Process'}
+          </button>
+        </div>
+
+        {error && <p className="text-red-500 mt-4">{error}</p>}
+      </>
+    ) : (
+      // Show the design component when data is available
+      <div className="mt-8 w-full h-screen">
+        {renderDesign()}
+      </div>
+    )}
+    </div>
+
   )
 }
