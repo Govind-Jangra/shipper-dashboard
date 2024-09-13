@@ -1,5 +1,5 @@
 "use client"
-/* eslint-disable */
+
 import React from "react";
 import { TooltipProps } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

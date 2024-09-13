@@ -1,5 +1,5 @@
 "use client";
-/* eslint-disable */
+
 import React from "react";
 import { Tab } from "@headlessui/react";
 import clsx from "clsx";
