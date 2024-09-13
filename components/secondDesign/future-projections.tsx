@@ -12,7 +12,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { TrendingUp, TrendingDown } from "lucide-react";
-import { formatCurrency, COLORS } from "./utils.tsx";
+import { formatCurrency, COLORS } from "./utils";
 
 export const FutureProjections = ({ data }) => {
   // Calculate futureTotalsData with Discount logic

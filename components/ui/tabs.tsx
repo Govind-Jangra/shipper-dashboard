@@ -4,7 +4,7 @@ import { Tab } from "@headlessui/react";
 import clsx from "clsx";
 
 interface TabsProps {
-  value: string;
+  value: number;
   onValueChange: (value: string) => void;
   className?: string;
   children: React.ReactNode;

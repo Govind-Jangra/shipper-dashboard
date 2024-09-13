@@ -6,7 +6,13 @@ import { FutureProjections } from "./future-projections.tsx";
 import { RateAnalysis } from "./rate-analysis.tsx";
 import { data } from "./utils.tsx";
 
-const PldDataAnalyzer = ({data}) => {
+interface DataType {
+  totals: Record<string, number>;
+  futureTotals: Record<string, Record<string, number>>;
+  carrierRateOfIncrease: Record<string, Record<string, number>>;
+}
+
+const PldDataAnalyzer = ({data}:{ data: DataType }) => {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (

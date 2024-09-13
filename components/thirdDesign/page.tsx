@@ -1,5 +1,6 @@
 "use client"
 import React from "react";
+import { TooltipProps } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ChartContainer,
@@ -24,7 +25,13 @@ import {
   PolarAngleAxis,
 } from "recharts";
 
-export default function Dashboard({ data }) {
+interface DataType {
+  totals: Record<string, number>;
+  futureTotals: Record<string, Record<string, number>>;
+  carrierRateOfIncrease: Record<string, Record<string, number>>;
+}
+
+export default function Dashboard({ data }: { data: DataType }) {
     const chargeData = [
         { name: "Base Rate", value: data.totals["Base Rate"] },
         { name: "DAS", value: data.totals["DAS"] },
@@ -75,7 +82,7 @@ export default function Dashboard({ data }) {
     
       const rateIncreaseData = generateRateIncreaseData();
     
-      const CustomTooltip = ({ active, payload }) => {
+      const CustomTooltip = ({ active, payload }:TooltipProps<number, string>) => {
         if (active && payload && payload.length) {
           return (
             <div className="bg-gray-800 p-2 border border-gray-700 rounded shadow">
@@ -182,7 +189,7 @@ export default function Dashboard({ data }) {
 
                   <RadialBar
                     background
-                    clockWise
+                    clockwise
                     dataKey="value"
                     cornerRadius={30}
                     fill="#60A5FA"
