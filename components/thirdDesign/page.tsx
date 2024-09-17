@@ -32,6 +32,19 @@ interface DataType {
   carrierRateOfIncrease: Record<string, Record<string, number>>;
 }
 
+const formatNumber = (value: number) => {
+  if (value >= 1e9) {
+    return `${(value / 1e9).toFixed(2)}B`;
+  } else if (value >= 1e6) {
+    return `${(value / 1e6).toFixed(2)}M`;
+  } else if (value >= 1e3) {
+    return `${(value / 1e3).toFixed(2)}K`;
+  } else {
+    return value.toFixed(2);
+  }
+};
+
+
 export default function Dashboard({ data }: { data: DataType }) {
     const chargeData = [
         { name: "Base Rate", value: data.totals["Base Rate"] },
@@ -88,7 +101,7 @@ export default function Dashboard({ data }: { data: DataType }) {
           return (
             <div className="bg-gray-800 p-2 border border-gray-700 rounded shadow">
               <p className="font-bold text-white">{payload[0].payload.name}</p>
-              <p className="text-white">{`Increase: ${payload[0].value}%`}</p>
+              <p className="text-white">{`Increase: ${formatNumber((payload[0].value as number))}%`}</p>
             </div>
           );
         }
@@ -133,7 +146,7 @@ export default function Dashboard({ data }: { data: DataType }) {
                     />
                   ))}
                   <Label
-                    value={`$${totalCharge.toFixed(2)}`}
+                    value={`$${formatNumber(totalCharge)}`}
                     position="center"
                     fill="#FFFFFF"
                     style={{
@@ -212,7 +225,7 @@ export default function Dashboard({ data }: { data: DataType }) {
             >
               <div className="text-left">
                 <p className="text-2xl font-bold text-blue-400">
-                  ${discountAmount.toFixed(2)}
+                ${formatNumber(discountAmount)}
                 </p>
                 <p className="text-base">
                   Total Discount
@@ -220,7 +233,7 @@ export default function Dashboard({ data }: { data: DataType }) {
               </div>
               <div className="text-right">
                 <p className="text-2xl font-bold text-green-400">
-                  ${finalAmount.toFixed(2)}
+                ${formatNumber(finalAmount)}
                 </p>
                 <p className="text-base">
                   After Discount Amount
