@@ -18,6 +18,18 @@ const COLORS = ['#60A5FA', '#34D399', '#F472B6', '#FBBF24', '#A78BFA']
 //   return null
 // }
 
+const formatNumber = (value: number) => {
+  if (value >= 1e9) {
+    return `${(value / 1e9).toFixed(2)}B`;
+  } else if (value >= 1e6) {
+    return `${(value / 1e6).toFixed(2)}M`;
+  } else if (value >= 1e3) {
+    return `${(value / 1e3).toFixed(2)}K`;
+  } else {
+    return value.toFixed(2);
+  }
+};
+
 const StackedAreaTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
@@ -25,7 +37,7 @@ const StackedAreaTooltip = ({ active, payload, label }: any) => {
         <p className="font-semibold text-gray-200">{label}</p>
         {payload.map((entry: any, index: number) => (
           <p key={`item-${index}`} className="text-sm" style={{ color: entry.color }}>
-            {entry.name}: ${entry.value}
+            {entry.name}: ${formatNumber(entry.value)}
           </p>
         ))}
       </div>
@@ -72,7 +84,7 @@ const renderActiveShape = (props: any) => {
       />
       <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
       <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#d1d5db" className="text-sm">{`$${value}`}</text>
+      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#d1d5db" className="text-sm">{`$${formatNumber(value)}`}</text>
       <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#9ca3af" className="text-xs">
         {`(${(percent * 100).toFixed(2)}%)`}
       </text>
@@ -264,6 +276,8 @@ export default function ShipperDashboardComponent({data}) {
     fetchData();
   }, []);
 
+  
+  
  
   return (
     <div className="p-8 bg-gray-900 min-h-screen text-gray-200">
@@ -296,7 +310,7 @@ export default function ShipperDashboardComponent({data}) {
             </ResponsiveContainer>
           </CardContent>
           <div className="text-center mt-4">
-            <span className="text-2xl font-bold text-gray-100">${totalCharge}</span>
+            <span className="text-2xl font-bold text-gray-100">${formatNumber(totalCharge)}</span>
             <span className="text-sm text-gray-400 ml-2">Total Charge</span>
           </div>
         </Card>
